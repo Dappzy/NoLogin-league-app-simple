@@ -1,0 +1,66 @@
+{player.name === "Ben" && (
+  <a
+    href="https://api.whatsapp.com/send?phone=447848861345"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="ml-2 text-green-500 hover:text-green-700"
+    title="Contact on WhatsApp"
+  >
+    <MessageCircle size={16} />
+  </a>
+)}
+{player.name === "Chris" && (
+  <a
+    href="https://api.whatsapp.com/send?phone=17869280055"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="ml-2 text-green-500 hover:text-green-700"
+    title="Contact on WhatsApp"
+  >
+    <MessageCircle size={16} />
+  </a>
+)}
+{player.name === "Elie" && (
+  <a
+    href="https://api.whatsapp.com/send?phone=6281249360674"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="ml-2 text-green-500 hover:text-green-700"
+    title="Contact on WhatsApp"
+  >
+    <MessageCircle size={16} />
+  </a>
+)}
+{player.name === "Mathias" && (
+  <a
+    href="https://api.whatsapp.com/send?phone=46701423020"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="ml-2 text-green-500 hover:text-green-700"
+    title="Contact on WhatsApp"
+  >
+    <MessageCircle size={16} />
+  </a>
+)}
+{player.name === "Pickles" && (
+  <a
+    href="https://api.whatsapp.com/send?phone=628214566036"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="ml-2 text-green-500 hover:text-green-700"
+    title="Contact on WhatsApp"
+  >
+    <MessageCircle size={16} />
+  </a>
+)}
+{player.name === "Maximilien" && (
+  <a
+    href="https://api.whatsapp.com/send?phone=33666249364"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="ml-2 text-green-500 hover:text-green-700"
+    title="Contact on WhatsApp"
+  >
+    <MessageCircle size={16} />
+  </a>
+)}
