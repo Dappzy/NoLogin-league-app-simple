@@ -1,159 +1,67 @@
 # 🏆 Championship Ladder
 
-A real-time sports ladder tournament system with a balanced "lives" mechanic. Players challenge upward to climb rankings while maintaining fair play through an innovative lives system that encourages both offensive challenges and defensive matches. Built with React, TypeScript, and Supabase.
-
-<div align="center">
-  
-  ![Championship Ladder](https://via.placeholder.com/800x400.png?text=Championship+Ladder+Screenshot)
-  
-  **A real-time sports ladder tournament system with balanced gameplay**
-  
-  [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-  [![GitHub](https://img.shields.io/badge/GitHub-Dappzy-blue?logo=github)](https://github.com/Dappzy)
-  [![React](https://img.shields.io/badge/React-18-blue)](https://reactjs.org/)
-  [![TypeScript](https://img.shields.io/badge/TypeScript-4.9-blue)](https://www.typescriptlang.org/)
-  [![Supabase](https://img.shields.io/badge/Supabase-2.0-green)](https://supabase.io/)
-  [![Tailwind](https://img.shields.io/badge/Tailwind-3.0-blue)](https://tailwindcss.com/)
-  
-</div>
+A real-time sports ladder tournament system with a dynamic challenge system and innovative lives mechanic. Built with React, TypeScript, and Supabase.
 
 ## 📋 Overview
 
-Championship Ladder is a modern, real-time ladder tournament system built for sports communities. Players challenge others above them to climb the rankings, with a unique "lives" system that ensures fair play and active participation from all competitors.
+Championship Ladder is a modern, real-time ladder tournament system built for sports communities. Players challenge others above them to climb the rankings, with a unique "lives" system that ensures fair play and active participation.
 
-<div align="center">
-  <img src="https://via.placeholder.com/800x400.png?text=Lives+System+Screenshot" width="80%" alt="Lives System"/>
-</div>
+## ✨ Current Features
 
-## ✨ Features
+- **Dynamic Challenge System**
+  - Challenge players up to 3 positions above you
+  - Top 5 players can challenge 2 positions above
+  - 7-day match completion timeframe
 
-<table>
-  <tr>
-    <td width="50%">
-      <h3>🔄 Dynamic Challenge System</h3>
-      <ul>
-        <li>Challenge players up to 3 positions above you</li>
-        <li>Top 5 players can challenge 2 positions above</li>
-        <li>Real-time challenge notifications</li>
-        <li>7-day match completion timeframe</li>
-      </ul>
-    </td>
-    <td width="50%">
-      <img src="https://via.placeholder.com/400x200.png?text=Challenge+System" width="100%" alt="Challenge System"/>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
-      <img src="https://via.placeholder.com/400x200.png?text=Lives+System" width="100%" alt="Lives System"/>
-    </td>
-    <td width="50%">
-      <h3>❤️ Innovative Lives System</h3>
-      <ul>
-        <li>Start with 2 lives</li>
-        <li>Issuing challenges costs 1 life</li>
-        <li>Accepting challenges earns 1 life (max 5)</li>
-        <li>Prevents ranking camping and challenge spamming</li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
-      <h3>📱 Mobile-Optimized Interface</h3>
-      <ul>
-        <li>Responsive design works on all devices</li>
-        <li>Clean, intuitive UI for player standings</li>
-        <li>Quick actions for challenging and responding</li>
-        <li>WhatsApp integration for player communication</li>
-      </ul>
-    </td>
-    <td width="50%">
-      <img src="https://via.placeholder.com/400x200.png?text=Mobile+Interface" width="100%" alt="Mobile Interface"/>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
-      <img src="https://via.placeholder.com/400x200.png?text=Admin+Panel" width="100%" alt="Admin Panel"/>
-    </td>
-    <td width="50%">
-      <h3>🔐 Admin Controls</h3>
-      <ul>
-        <li>Manage player profiles</li>
-        <li>Oversee challenges and match results</li>
-        <li>Reset or modify ladder rankings</li>
-        <li>Season management with automated resets</li>
-      </ul>
-    </td>
-  </tr>
-</table>
+- **Lives System**
+  - Players start with 2 lives
+  - Issuing challenges costs 1 life
+  - Accepting challenges earns 1 life (max 5)
+  - Prevents both ranking camping and challenge spamming
+
+- **Mobile-Optimized Interface**
+  - Responsive design works on all devices
+  - Clean player standings view
+  - One-click challenging and response system
+  - WhatsApp integration for direct communication
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-
-- Node.js (v16 or higher)
-- npm or yarn
-- Supabase account (for database and authentication)
+- Node.js 16.x or higher
+- A Supabase account
 
 ### Installation
 
 1. Clone the repository
-   ```bash
-   git clone https://github.com/Dappzy/NoLogin-league-app-simple.git
-   cd NoLogin-league-app-simple
-   ```
+```bash
+git clone https://github.com/Dappzy/NoLogin-league-app-simple.git
+cd NoLogin-league-app-simple
+```
 
 2. Install dependencies
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
+```bash
+npm install
+```
 
-3. Set up environment variables
-   ```bash
-   cp .env.example .env.local
-   # Edit .env.local with your Supabase credentials
-   ```
+3. Create a Supabase project and database
 
-4. Run the development server
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
-
-## 🧠 The Lives System Explained
-
-The lives system is the core mechanic that makes Championship Ladder fair and engaging:
-
-<div align="center">
-  <table>
-    <tr>
-      <th>Problem</th>
-      <th>Solution</th>
-    </tr>
-    <tr>
-      <td>Higher-ranked players could refuse all challenges to protect their position</td>
-      <td>Players gain lives by accepting challenges, incentivizing them to play matches even when they have more to lose than gain</td>
-    </tr>
-    <tr>
-      <td>Lower-ranked players could spam challenges without accepting matches from below</td>
-      <td>Challenges cost lives, creating a resource that must be managed and earned through fair play</td>
-    </tr>
-    <tr>
-      <td>Inactive players holding positions</td>
-      <td>Without playing matches to earn lives, players eventually can't challenge upward</td>
-    </tr>
-  </table>
-</div>
-
-This creates a balanced ladder where players must both challenge upward and defend their position.
-
-## 📊 Database Schema
-
-The application uses Supabase with the following main tables:
+4. Create `.env` file with your Supabase credentials
+```
+VITE_SUPABASE_URL=your-supabase-url
+VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
+```
 
 > **Important Note for Setup:** When deploying your own version of this app, you must create your own Supabase project and database. This ensures your instance will be completely isolated from the live version. Each Supabase project has its own unique URL and API keys, so there's no risk of interference with the original app.
+
+5. Start the development server
+```bash
+npm run dev
+```
+
+## 💾 Database Schema
+
+The app uses a Supabase database with the following main tables:
 
 - **players** - Player profiles and statistics
 - **challenges** - Active and historical challenges between players
@@ -214,30 +122,32 @@ CREATE INDEX IF NOT EXISTS idx_matches_defender_id ON matches(defender_id);
 
 ## 🔧 Tech Stack
 
-<div align="center">
-  <table>
-    <tr>
-      <td align="center" width="96">
-        <img src="https://skillicons.dev/icons?i=react" width="48" height="48" alt="React" />
-        <br>React
-      </td>
-      <td align="center" width="96">
-        <img src="https://skillicons.dev/icons?i=ts" width="48" height="48" alt="TypeScript" />
-        <br>TypeScript
-      </td>
-      <td align="center" width="96">
-        <img src="https://skillicons.dev/icons?i=tailwind" width="48" height="48" alt="Tailwind" />
-        <br>Tailwind
-      </td>
-      <td align="center" width="96">
-        <a href="https://supabase.com/">
-          <img src="https://avatars.githubusercontent.com/u/54469796?s=48&v=4" width="48" height="48" alt="Supabase" />
-        </a>
-        <br>Supabase
-      </td>
-    </tr>
-  </table>
-</div>
+- **React** - Frontend framework
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Styling
+- **Supabase** - Database and auth
+
+## 🗺️ Roadmap
+
+Future features we're planning to add:
+
+- **Admin Dashboard** - For managing players, matches, and ladder rankings
+- **Season Management** - Automated season resets and historical data
+- **Statistics Dashboard** - Detailed player stats and visualizations
+- **Tournament Mode** - Bracket-style tournaments alongside the ladder
+- **Notification System** - Email and push notifications for challenges
+- **Public API** - For third-party integrations
+
+## 👥 Contributing
+
+Contributions are welcome! If you'd like to help improve the Championship Ladder app, please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Make your changes
+4. Commit your changes (`git commit -m 'Add some amazing feature'`)
+5. Push to the branch (`git push origin feature/amazing-feature`)
+6. Open a Pull Request
 
 ## 📝 License
 
@@ -251,7 +161,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 <div align="center">
-  <sub>Built with ❤️ for the love of the game</sub>
-  <br>
-  <sub>Created by <a href="https://github.com/Dappzy">Dappzy</a></sub>
+  <sub>Built with ❤️ by <a href="https://github.com/Dappzy">Dappzy</a></sub>
 </div>
