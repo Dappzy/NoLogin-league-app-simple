@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Heart, MessageSquare, Bell, Trophy, X, Swords, Phone, ExternalLink, MessageCircle, Info } from 'lucide-react';
+import { Heart, Bell, Trophy, X, Swords, Phone, ExternalLink, MessageCircle, Info } from 'lucide-react';
 import { Player, Challenge, Match } from './types';
 import { initialPlayers } from './data';
 import ChallengeInfo from './components/ChallengeInfo';
@@ -372,19 +372,39 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-green-100">
-      <div className="bg-green-800 text-white py-6 px-4">
-        <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <h1 className="text-3xl font-bold">BSC Singles Championship Ladder</h1>
-          <div className="flex items-center space-x-4">
-            <span className="text-sm">Season ends in {daysRemaining} days</span>
-            <button 
-              onClick={() => setShowRules(true)}
-              className="bg-white text-green-700 hover:bg-green-100 px-3 py-1 rounded-md flex items-center font-medium text-sm shadow-sm transition-colors"
-              title="View Ladder Rules"
-            >
-              <Info className="w-4 h-4 mr-1" />
-              Rules
-            </button>
+      <div className="bg-green-800 text-white py-4 px-3 md:py-6 md:px-4">
+        <div className="max-w-6xl mx-auto">
+          {/* Desktop header */}
+          <div className="hidden md:flex md:justify-between md:items-center">
+            <h1 className="text-3xl font-bold">BSC Singles Championship Ladder</h1>
+            <div className="flex items-center space-x-4">
+              <span>Season ends in {daysRemaining} days</span>
+              <button 
+                onClick={() => setShowRules(true)}
+                className="bg-white text-green-700 hover:bg-green-100 px-3 py-1 rounded-md flex items-center font-medium shadow-sm transition-colors"
+                title="View Ladder Rules"
+              >
+                <Info className="w-4 h-4 mr-1" />
+                Rules
+              </button>
+            </div>
+          </div>
+          
+          {/* Mobile header */}
+          <div className="md:hidden">
+            <div className="flex justify-between items-center">
+              <h1 className="text-xl font-bold">BSC Singles Ladder</h1>
+              <button 
+                onClick={() => setShowRules(true)}
+                className="bg-white text-green-700 hover:bg-green-100 w-9 h-9 rounded-full flex items-center justify-center shadow-sm"
+                title="View Ladder Rules"
+              >
+                <Info className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="text-sm mt-1">
+              Season ends: <span className="font-medium">{daysRemaining} days</span>
+            </div>
           </div>
         </div>
       </div>
@@ -405,7 +425,7 @@ function App() {
                 Position: <span className="font-semibold">#{currentUser.position}</span>
               </div>
               <div className="text-sm text-gray-600 mr-3">
-                Lives: <span className="font-semibold text-red-500">{Array(currentUser.lives).fill('❤️').join('')}</span>
+                Lives: <span className="font-semibold text-green-500">{Array(currentUser.lives).fill('❤️').join('')}</span>
               </div>
               <button 
                 onClick={handleLogout}
@@ -528,65 +548,168 @@ function App() {
           {/* Rules Modal */}
           {showRules && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-              <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-auto">
-                <div className="bg-green-700 text-white px-4 py-3 flex justify-between items-center">
+              <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full mx-4 max-h-[90vh] overflow-auto">
+                <div className="bg-green-700 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-10">
                   <h2 className="text-lg font-bold flex items-center">
                     <Info className="w-5 h-5 mr-2" />
                     Ladder Rules
                   </h2>
                   <button 
                     onClick={() => setShowRules(false)}
-                    className="text-white hover:text-green-200"
+                    className="text-white hover:text-green-200 p-1"
                   >
                     <X className="w-5 h-5" />
                   </button>
                 </div>
-                <div className="p-6">
-                  <ul className="space-y-6 text-sm">
-                    <li className="flex items-start">
-                      <div className="bg-green-100 text-green-800 rounded-full w-6 h-6 flex items-center justify-center mr-2 flex-shrink-0 mt-0.5">1</div>
-                      <div>
-                        <strong className="text-base">Lives System:</strong> Each player starts with 2 lives
-                        <p className="text-gray-700 mt-2">
-                          The lives system ensures the ladder functions properly and fairly. In this ladder, lower-ranked players challenge higher-ranked players (not the other way around).
-                        </p>
-                        <p className="text-gray-700 mt-2">
-                          Without the lives system, higher-ranked players could simply refuse all challenges from those below them to protect their position. By rewarding higher-ranked players with extra lives when they accept challenges, we incentivize them to play matches even when they have more to lose than gain.
-                        </p>
-                        <p className="text-gray-700 mt-2">
-                          Similarly, the lives limit prevents players from constantly challenging those above without ever accepting challenges from below. This creates balance - if you want to challenge upward, you must also be willing to defend your position.
-                        </p>
-                        <ul className="ml-4 mt-2 space-y-2">
-                          <li><span className="font-medium">• Issuing a challenge costs 1 life</span></li>
-                          <li><span className="font-medium">• Accepting a challenge gives +1 life (max 5) regardless of outcome</span></li>
-                          <li><span className="font-medium">• Players with 0 lives cannot issue challenges</span></li>
-                          <li><span className="font-medium">• This system encourages players to accept challenges from those below them</span></li>
+                
+                <div className="p-4 md:p-6">
+                  {/* Intro paragraph */}
+                  <div className="mb-4 border-b border-gray-100 pb-4">
+                    <p className="text-sm text-gray-700">
+                      This ladder system uses an innovative lives mechanic to ensure fair play and active participation from all players.
+                    </p>
+                  </div>
+                  
+                  {/* Rules list */}
+                  <div className="space-y-5">
+                    {/* Lives System */}
+                    <div className="bg-green-50 rounded-lg p-3 md:p-4">
+                      <div className="flex items-center mb-2">
+                        <div className="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 flex-shrink-0">1</div>
+                        <h3 className="font-bold text-green-800">Lives System</h3>
+                      </div>
+                      
+                      <div className="ml-8">
+                        <div className="grid grid-cols-2 gap-2 mb-3">
+                          <div className="bg-white rounded p-2 text-center text-xs border border-green-100">
+                            <div className="font-bold text-green-700 text-sm">2</div>
+                            Starting Lives
+                          </div>
+                          <div className="bg-white rounded p-2 text-center text-xs border border-green-100">
+                            <div className="font-bold text-green-700 text-sm">5</div>
+                            Maximum Lives
+                          </div>
+                        </div>
+                        
+                        <ul className="space-y-2 text-sm">
+                          <li className="flex items-start">
+                            <span className="text-green-700 mr-2">•</span>
+                            <span>Issuing a challenge costs <b>1 life</b></span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="text-green-700 mr-2">•</span>
+                            <span>Accepting a challenge gives <b>+1 life</b></span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="text-green-700 mr-2">•</span>
+                            <span>With <b>0 lives</b>, you cannot challenge</span>
+                          </li>
                         </ul>
+                        
+                        <div className="mt-3 text-xs bg-yellow-50 p-2 rounded border border-yellow-100">
+                          <p><b>Why this matters:</b> It prevents higher players from refusing all challenges and lower players from spamming challenges.</p>
+                        </div>
                       </div>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="bg-green-100 text-green-800 rounded-full w-6 h-6 flex items-center justify-center mr-2 flex-shrink-0 mt-0.5">2</div>
-                      <div>
-                        <strong className="text-base">Challenge Range:</strong>
-                        <p className="text-gray-700 mt-2">
-                          Players can only challenge those within a reasonable range above them:
+                    </div>
+                    
+                    {/* Challenge Range */}
+                    <div className="bg-blue-50 rounded-lg p-3 md:p-4">
+                      <div className="flex items-center mb-2">
+                        <div className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 flex-shrink-0">2</div>
+                        <h3 className="font-bold text-blue-800">Challenge Range</h3>
+                      </div>
+                      
+                      <div className="ml-8">
+                        <div className="grid grid-cols-2 gap-2 mb-3">
+                          <div className="bg-white rounded p-2 text-center text-xs border border-blue-100">
+                            <div className="font-bold text-blue-700 text-base">2</div>
+                            Top 5 players
+                          </div>
+                          <div className="bg-white rounded p-2 text-center text-xs border border-blue-100">
+                            <div className="font-bold text-blue-700 text-base">3</div>
+                            All other players
+                          </div>
+                        </div>
+                        
+                        <p className="text-xs text-gray-600">
+                          Players can only challenge others who are within the position range shown above.
                         </p>
-                        <ul className="ml-4 mt-2 space-y-2">
-                          <li><span className="font-medium">• Top 5 players can challenge 2 positions above</span></li>
-                          <li><span className="font-medium">• Others can challenge up to 3 positions above</span></li>
-                        </ul>
                       </div>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="bg-green-100 text-green-800 rounded-full w-6 h-6 flex items-center justify-center mr-2 flex-shrink-0 mt-0.5">3</div>
-                      <div>
-                        <strong className="text-base">Timeframe:</strong>
-                        <p className="text-gray-700 mt-2">
-                          Matches must be completed within 7 days of the challenge being accepted.
+                    </div>
+                    
+                    {/* Timeframe */}
+                    <div className="bg-purple-50 rounded-lg p-3 md:p-4">
+                      <div className="flex items-center mb-2">
+                        <div className="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 flex-shrink-0">3</div>
+                        <h3 className="font-bold text-purple-800">Match Timeframe</h3>
+                      </div>
+                      
+                      <div className="ml-8">
+                        <div className="bg-white rounded p-2 text-center md:w-1/3 text-xs border border-purple-100">
+                          <div className="font-bold text-purple-700 text-base">7 days</div>
+                          to complete match
+                        </div>
+                        
+                        <p className="text-xs text-gray-600 mt-2">
+                          All matches must be completed within 7 days after a challenge is accepted.
                         </p>
                       </div>
-                    </li>
-                  </ul>
+                    </div>
+                    
+                    {/* How App Works */}
+                    <div className="bg-orange-50 rounded-lg p-3 md:p-4">
+                      <div className="flex items-center mb-2">
+                        <div className="bg-orange-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 flex-shrink-0">4</div>
+                        <h3 className="font-bold text-orange-800">How This App Works</h3>
+                      </div>
+                      
+                      <div className="ml-8 space-y-4">
+                        <div className="flex flex-col md:flex-row md:items-center gap-3">
+                          <div className="bg-white rounded p-2 text-center text-xs border border-orange-100 md:w-1/4">
+                            <div className="font-bold text-orange-700">Step 1</div>
+                            Player Login
+                          </div>
+                          <p className="text-xs text-gray-600">
+                            Select your name and enter your unique 4-digit PIN code (provided when you join the ladder).
+                          </p>
+                        </div>
+                        
+                        <div className="flex flex-col md:flex-row md:items-center gap-3">
+                          <div className="bg-white rounded p-2 text-center text-xs border border-orange-100 md:w-1/4">
+                            <div className="font-bold text-orange-700">Step 2</div>
+                            Issue Challenge
+                          </div>
+                          <p className="text-xs text-gray-600">
+                            Challenge a player within your allowed range by clicking the challenge button next to their name.
+                          </p>
+                        </div>
+                        
+                        <div className="flex flex-col md:flex-row md:items-center gap-3">
+                          <div className="bg-white rounded p-2 text-center text-xs border border-orange-100 md:w-1/4">
+                            <div className="font-bold text-orange-700">Step 3</div>
+                            Play Match
+                          </div>
+                          <p className="text-xs text-gray-600">
+                            Contact your opponent via WhatsApp by clicking their name. Arrange and play your match within 7 days.
+                          </p>
+                        </div>
+                        
+                        <div className="flex flex-col md:flex-row md:items-center gap-3">
+                          <div className="bg-white rounded p-2 text-center text-xs border border-orange-100 md:w-1/4">
+                            <div className="font-bold text-orange-700">Step 4</div>
+                            Report Result
+                          </div>
+                          <p className="text-xs text-gray-600">
+                            After the match, tag the admin in the WhatsApp group to report your match results and they will update the ladder.
+                          </p>
+                        </div>
+                        
+                        <div className="mt-1 text-xs bg-blue-50 p-2 rounded border border-blue-100">
+                          <p><b>Note:</b> Only admins can confirm match results to ensure fair play. Tag them in the WhatsApp group and they will update the ladder rankings automatically.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -879,7 +1002,7 @@ function App() {
                           <div className="flex items-center space-x-3">
                             <div className="flex-shrink-0">
                               {Array(player.lives).fill(0).map((_, i) => (
-                                <Heart key={i} className="w-5 h-5 inline text-red-500 fill-current" />
+                                <Heart key={i} className="w-5 h-5 inline text-green-500 fill-current" />
                               ))}
                             </div>
                             {isChallengable && (
@@ -931,10 +1054,15 @@ function App() {
               <div className="md:w-1/3 flex-shrink-0">
                 <div className="bg-white rounded-lg shadow-md overflow-hidden sticky top-6">
                   <div className="bg-green-700 text-white px-4 py-3 flex justify-between items-center">
-                    <h2 className="text-lg font-bold flex items-center">
-                      <MessageSquare className="w-5 h-5 mr-2" />
-                      Notice Board
-                    </h2>
+                    <h2 className="text-lg font-bold">Player Standings</h2>
+                    <button 
+                      onClick={() => setShowRules(true)}
+                      className="text-white hover:text-green-200 flex items-center"
+                      title="View Rules & Information"
+                    >
+                      <Info className="w-5 h-5 mr-1" />
+                      <span className="text-sm">Rules</span>
+                    </button>
                   </div>
                   
                   <div className="p-4 max-h-[calc(100vh-12rem)] overflow-y-auto">
